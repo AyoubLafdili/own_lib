@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 21:18:11 by alafdili          #+#    #+#             */
-/*   Updated: 2023/12/26 21:32:52 by alafdili         ###   ########.fr       */
+/*   Created: 2023/11/06 18:28:38 by alafdili          #+#    #+#             */
+/*   Updated: 2024/03/15 19:59:55 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-void	ft_putnbr(int nb, int *counter)
+void	*ft_calloc(size_t count, size_t size)
 {
-	if (nb == -2147483648)
-	{
-		*counter += write(1, "-2147483648", 11);
-	}
-	else if (nb < 0)
-	{
-		*counter += write(1, "-", 1);
-		nb = -nb;
-		ft_putnbr(nb, counter);
-	}
-	else if (nb >= 0 && nb <= 9)
-	{
-		nb += '0';
-		*counter += write(1, &nb, 1);
-	}
-	else
-	{
-		ft_putnbr(nb / 10, counter);
-		ft_putnbr(nb % 10, counter);
-	}
+	void	*ptr;
+	size_t	tsize;
+
+	ptr = NULL;
+	tsize = count * size;
+	if (size > 0 && tsize / size != count)
+		return (NULL);
+	ptr = malloc(tsize);
+	if (ptr == NULL)
+		return (NULL);
+	ft_bzero(ptr, tsize);
+	return (ptr);
 }

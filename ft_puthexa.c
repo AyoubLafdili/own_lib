@@ -1,16 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_puthexa.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 12:57:48 by alafdili          #+#    #+#             */
-/*   Updated: 2023/11/27 12:25:48 by alafdili         ###   ########.fr       */
+/*   Created: 2023/12/06 13:17:16 by alafdili          #+#    #+#             */
+/*   Updated: 2024/03/24 15:21:23 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isascii(int c)
+#include "libft.h"
+
+void	ft_puthexa(unsigned int decimal, int *counter, short boll)
 {
-	return (c >= 0 && c <= 127);
+	char	*hexadigit;
+
+	hexadigit = "0123456789abcdef";
+	if (boll == 1)
+		hexadigit = "0123456789ABCDEF";
+	if (decimal > 15)
+	{
+		ft_puthexa(decimal / 16, counter, boll);
+		ft_putchar(hexadigit[decimal % 16], counter);
+	}
+	else
+		ft_putchar(hexadigit[decimal], counter);
 }

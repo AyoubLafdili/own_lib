@@ -6,23 +6,20 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:49:05 by alafdili          #+#    #+#             */
-/*   Updated: 2023/12/26 22:03:41 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/01 14:52:21 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 2147483647
-# endif
-
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
-# include <limits.h>
 
-/***************************** libft function *****************************/
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
 
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
@@ -36,12 +33,13 @@ int		ft_isascii(int c);
 int		ft_isdigit(int c);
 int		ft_isprint(int c);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-size_t	ft_strlen(const char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+size_t	ft_strlen(const char *s);
 
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
@@ -59,6 +57,7 @@ char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strdup(const char *s1);
 char	**ft_split(const char *s, char c);
+char	*get_next_line(int fd);
 
 typedef struct s_list
 {
@@ -76,19 +75,13 @@ int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-/***************************** printf function *****************************/
-
+// ft_printf functions:
+int		ft_printf(const char *format, ...);
+void	ft_putaddress(unsigned long decimal, int *counter);
+void	ft_puthexa(unsigned int decimal, int *counter, short boll);
+void	ft_putunbr(unsigned int nb, int *counter);
 void	ft_putstr(const char *str, int *counter);
 void	ft_putchar(int ch, int *counter);
-void	ft_putunbr(unsigned int nb, int *counter);
 void	ft_putnbr(int nb, int *counter);
-void	ft_puthexa(unsigned int decimal, int *counter, short boll);
-void	ft_putaddress(unsigned long decimal, int *counter);
-int		ft_printf(const char *format, ...);
-
-/*************************** get_next_line function ***********************/
-char	*get_next_line(int fd);
-char	*get_next_line_fd(int fd);
-char	*str_join(const char *s1, const char *s2);
 
 #endif

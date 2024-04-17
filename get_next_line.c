@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 19:16:12 by alafdili          #+#    #+#             */
-/*   Updated: 2023/12/26 22:05:39 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/09 02:59:37 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ static char	*buffer_update(char *buffer)
 	else if (buffer[start] == '\0')
 		return (free(buffer), NULL);
 	updated = ft_substr(buffer, start, ft_strlen(buffer) - start);
+	if (!updated)
+		return(free(buffer), NULL);
+	if (updated[0] == '\0')
+		return (free(buffer), free(updated), NULL);
 	free(buffer);
 	return (updated);
 }
@@ -57,15 +61,11 @@ static char	*read_lines(int fd, char *buffer)
 	{
 		r_value = read(fd, read_buffer, BUFFER_SIZE);
 		if (r_value == -1)
-		{
-			free(buffer);
-			free(read_buffer);
-			return (NULL);
-		}
+			return (free(buffer), free(read_buffer), NULL);
 		else if (r_value == 0)
 			break ;
 		read_buffer[r_value] = '\0';
-		buffer = str_join(buffer, read_buffer);
+		buffer = ft_strjoin(buffer, read_buffer);
 		if (ft_strchr(read_buffer, '\n') != NULL)
 			break ;
 	}

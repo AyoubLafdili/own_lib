@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 17:51:08 by alafdili          #+#    #+#             */
-/*   Updated: 2023/11/28 17:51:12 by alafdili         ###   ########.fr       */
+/*   Created: 2023/11/02 12:14:07 by alafdili          #+#    #+#             */
+/*   Updated: 2024/03/15 15:05:12 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	if (lst && del)
+	unsigned char	*ns1;
+	unsigned char	*ns2;
+
+	ns1 = (unsigned char *)s1;
+	ns2 = (unsigned char *)s2;
+	while (n > 0 && (*ns1 || *ns2))
 	{
-		del(lst -> content);
-		free(lst);
+		if (*ns1 != *ns2)
+			return (*ns1 - *ns2);
+		ns1++;
+		ns2++;
+		n--;
 	}
+	return (0);
 }

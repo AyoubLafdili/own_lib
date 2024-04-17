@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_putunbr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 21:17:48 by alafdili          #+#    #+#             */
-/*   Updated: 2023/12/26 21:33:01 by alafdili         ###   ########.fr       */
+/*   Created: 2023/12/06 11:47:53 by alafdili          #+#    #+#             */
+/*   Updated: 2024/03/24 15:21:23 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar(int ch, int *counter)
+void	ft_putunbr(unsigned int nb, int *counter)
 {
-	*counter += write(1, &ch, 1);
+	if (nb >= 0 && nb <= 9)
+	{
+		nb += '0';
+		*counter += write(1, &nb, 1);
+	}
+	else
+	{
+		ft_putunbr(nb / 10, counter);
+		ft_putunbr(nb % 10, counter);
+	}
 }

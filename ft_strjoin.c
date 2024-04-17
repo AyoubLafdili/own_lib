@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 11:29:43 by alafdili          #+#    #+#             */
-/*   Updated: 2023/11/26 10:43:24 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/09 02:59:47 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,13 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	int		flen;
 	int		slen;
 
-	if (!s1 || !s2)
-		return (NULL);
+	if (s1 == NULL)
+	{
+		constr = ft_strdup(s2);
+		if (!constr)
+			return (NULL);
+		return (constr);
+	}
 	flen = ft_strlen(s1);
 	slen = ft_strlen(s2);
 	constr = (char *) malloc((flen + slen + 1) * sizeof(char));
@@ -27,5 +32,6 @@ char	*ft_strjoin(const char *s1, const char *s2)
 		return (NULL);
 	ft_strlcpy (constr, s1, flen + 1);
 	ft_strlcat (constr, s2, (flen + slen + 1));
+	free((char *)s1);
 	return (constr);
 }
