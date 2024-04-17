@@ -1,4 +1,4 @@
-NAME = lib/libft.a
+NAME = libft.a
 
 HEADER = include/libft.h
 
@@ -30,7 +30,7 @@ FUN = $(SRC_DIR)/ft_atoi.c $(SRC_DIR)/ft_lstclear.c \
 	$(SRC_DIR)/ft_bzero.c $(SRC_DIR)/ft_itoa.c \
 	$(SRC_DIR)/ft_lstdelone.c
 
-REMOVE = rm -f
+REMOVE = rm -rf
 COMPILER = cc
 SOBJECT = $(FUN:.c=.o)
 
@@ -42,12 +42,12 @@ $(SRC_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER)
 all: $(NAME)
 
 $(NAME): $(SOBJECT)
-	ar -rc $(NAME) $(SOBJECT) 
+	ar -rc lib/$(NAME) $(SOBJECT) 
 
 clean:
 	$(REMOVE) $(SOBJECT)
 
 fclean: clean
-	$(REMOVE) $(NAME)
+	$(REMOVE) lib/$(NAME)
 
 re:  fclean all
