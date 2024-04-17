@@ -1,13 +1,34 @@
-NAME = libft.a
+NAME = lib/libft.a
 
-HEADER = libft.h
+HEADER = include/libft.h
 
-FUN = ft_atoi.c ft_isalpha.c ft_memchr.c ft_memset.c ft_strlcpy.c ft_strrchr.c ft_bzero.c ft_itoa.c ft_putendl_fd.c \
-	ft_isascii.c ft_memcmp.c ft_strchr.c ft_strlen.c ft_tolower.c ft_split.c ft_strmapi.c ft_striteri.c ft_putnbr_fd.c \
-	ft_calloc.c ft_isdigit.c ft_memcpy.c ft_strdup.c ft_strncmp.c ft_toupper.c ft_strtrim.c ft_putchar_fd.c get_next_line.c \
-	ft_isalnum.c ft_isprint.c ft_memmove.c ft_strlcat.c ft_strnstr.c ft_substr.c ft_strjoin.c ft_putstr_fd.c ft_printf.c \
-	ft_putchar.c ft_putstr.c ft_putnbr.c ft_putunbr.c ft_puthexa.c  ft_putaddress.c ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
-	ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
+SRC_DIR = src
+FUN = $(SRC_DIR)/ft_atoi.c $(SRC_DIR)/ft_lstclear.c \
+	$(SRC_DIR)/ft_memchr.c $(SRC_DIR)/ft_memset.c \
+	$(SRC_DIR)/ft_strlcpy.c $(SRC_DIR)/ft_strrchr.c \
+	$(SRC_DIR)/ft_memcmp.c $(SRC_DIR)/ft_strchr.c \
+	$(SRC_DIR)/ft_strlen.c $(SRC_DIR)/ft_tolower.c \
+	$(SRC_DIR)/ft_split.c $(SRC_DIR)/ft_strmapi.c  \
+	$(SRC_DIR)/ft_calloc.c $(SRC_DIR)/ft_isdigit.c \
+	$(SRC_DIR)/ft_memcpy.c $(SRC_DIR)/ft_strdup.c \
+	$(SRC_DIR)/ft_strncmp.c $(SRC_DIR)/ft_toupper.c \
+	$(SRC_DIR)/ft_isprint.c $(SRC_DIR)/ft_memmove.c \
+	$(SRC_DIR)/ft_strlcat.c $(SRC_DIR)/ft_strnstr.c \
+	$(SRC_DIR)/ft_substr.c $(SRC_DIR)/ft_strjoin.c \
+	$(SRC_DIR)/ft_putchar.c $(SRC_DIR)/ft_putstr.c \
+	$(SRC_DIR)/ft_putnbr.c $(SRC_DIR)/ft_putunbr.c \
+	$(SRC_DIR)/ft_lstsize.c $(SRC_DIR)/ft_lstlast.c \
+	$(SRC_DIR)/ft_lstiter.c $(SRC_DIR)/ft_lstmap.c \
+	$(SRC_DIR)/ft_putstr_fd.c $(SRC_DIR)/ft_printf.c \
+	$(SRC_DIR)/ft_strtrim.c $(SRC_DIR)/ft_putchar_fd.c \
+	$(SRC_DIR)/ft_lstadd_back.c $(SRC_DIR)/ft_isalpha.c \
+	$(SRC_DIR)/ft_putendl_fd.c $(SRC_DIR)/ft_isascii.c \
+	$(SRC_DIR)/ft_striteri.c $(SRC_DIR)/ft_putnbr_fd.c \
+	$(SRC_DIR)/ft_puthexa.c  $(SRC_DIR)/ft_putaddress.c \
+	$(SRC_DIR)/ft_lstnew.c $(SRC_DIR)/ft_lstadd_front.c \
+	$(SRC_DIR)/get_next_line.c $(SRC_DIR)/ft_isalnum.c \
+	$(SRC_DIR)/ft_bzero.c $(SRC_DIR)/ft_itoa.c \
+	$(SRC_DIR)/ft_lstdelone.c
 
 REMOVE = rm -f
 COMPILER = cc
@@ -15,8 +36,8 @@ SOBJECT = $(FUN:.c=.o)
 
 FLAGS = -Wall -Wextra -Werror
 
-%.o: %.c $(HEADER)
-	$(COMPILER) $(FLAGS) -c $<
+$(SRC_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER)
+	$(COMPILER) -Iinclude $(FLAGS) -o $@ -c $<
 
 all: $(NAME)
 
