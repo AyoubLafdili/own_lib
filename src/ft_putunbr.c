@@ -14,7 +14,7 @@
 
 void	ft_putunbr(unsigned int nb, int *counter)
 {
-	if (nb >= 0 && nb <= 9)
+	if (nb <= 9)
 	{
 		nb += '0';
 		*counter += write(1, &nb, 1);
